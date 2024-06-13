@@ -12,6 +12,9 @@ alias ngc="sudo nix-collect-garbage -d"`
 alias ngc7="sudo nix-collect-garbage --delete-older-than 7d"
 alias ngc14="sudo nix-collect-garbage --delete-older-than 14d"
 
+alias node14="NIXPKGS_ALLOW_INSECURE=1 nix shell --impure nixpkgs/23.05#nodejs-14_x"
+alias node16="NIXPKGS_ALLOW_INSECURE=1 nix shell --impure nixpkgs/23.05#nodejs-16_x"
+
 set fish_vi_force_cursor
 set fish_cursor_default block
 set fish_cursor_insert line blink
