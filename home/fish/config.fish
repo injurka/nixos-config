@@ -5,7 +5,7 @@ end
 alias cl="clear"
 alias lgit="lazygit"
 alias nswitch="sudo nixos-rebuild switch --flake /etc/nixos"
-alias nswitchu="sudo nixos-rebuild switch --flake /etc/nixos#isitreal-laptop --update-input nixpkgs --update-input rust-overlay --commit-lock-file --upgrade"
+alias nswitchu="sudo nixos-rebuild switch --flake /etc/nixos#nixos --update-input nixpkgs --commit-lock-file --upgrade"
 alias nau="sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos"
 alias nsgc="sudo nix-store --gc"
 alias ngc="sudo nix-collect-garbage -d"`
