@@ -29,6 +29,7 @@
     git
     vesktop
     neofetch
+    starship
   ];
 
   system.stateVersion = "24.05";
