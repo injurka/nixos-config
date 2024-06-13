@@ -28,6 +28,7 @@
     vscode
     git
     vesktop
+    neofetch
   ];
 
   system.stateVersion = "24.05";
