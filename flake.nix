@@ -36,6 +36,7 @@
 
         ./system/app/zoom.nix
         ./system/app/syncthing.nix
+        ./system/app/obsidian.nix
         # ./system/app/docker.nix
       ];
     };

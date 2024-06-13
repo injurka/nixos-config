@@ -7,9 +7,8 @@
     extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" "tss" ];
     shell = pkgs.fish;
     packages = with pkgs; [
-      kdePackages.kate
       tdesktop
-      # (discord.override { withVencord = true; })
+      wget
     ];
   };
 
