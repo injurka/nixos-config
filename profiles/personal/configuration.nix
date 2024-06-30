@@ -13,8 +13,6 @@
     ../../system/network/openvpn.nix
     
     (./. + "../../../system/wm"+("/"+userSettings.wm)+".nix")
-    ../../system/wm/kde.nix
-    ../../system/wm/x11.nix
     ../../system/wm/sound.nix
     ../../system/wm/dbus.nix
     ../../system/wm/fonts.nix
@@ -40,14 +38,6 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   programs.fish.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
 
   environment.systemPackages = with pkgs; [
     git

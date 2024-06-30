@@ -13,13 +13,16 @@
     ../../user/app/zoom.nix
     
     ../../user/shell/fish.nix
+
+    ../../user/hardware/bluetooth.nix
+
+    (./. + "../../../user/wm"+("/"+userSettings.wm+"/"+userSettings.wm)+".nix")
   ];
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; [    
     tdesktop
     syncthing
     vesktop
-    vscode
   ];
 
   home.stateVersion = "24.05";

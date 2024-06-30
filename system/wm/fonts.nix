@@ -2,9 +2,10 @@
 {
   fonts.packages = with pkgs; [
     iosevka
-    maple-mono-NF
+    maple-mono
     font-awesome
-    nerd-font-patcher
+    jetbrains-mono
+    (nerdfonts.override {fonts = ["Iosevka" "JetBrainsMono"];})
   ];
   fonts.fontDir.enable = true;
 }

@@ -13,8 +13,8 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  hardware.opengl.extraPackages = [ pkgs.amdvlk ];
-  hardware.opengl.extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+  hardware.graphics.extraPackages = [ pkgs.amdvlk ];
+  hardware.graphics.extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/27b7cdce-5fa0-42d2-a640-af8f410f23a9";

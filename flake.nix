@@ -7,9 +7,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };    
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs = inputs@{ self, catppuccin, anyrun, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -24,7 +30,7 @@
         username = "injurka";         # username
         name = "Injurka";             # name/identifier
         email = "injurka@gmail.com";  # email (used for certain configurations)
-        wm = "kde";                   # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
+        wm = "hyprland";                   # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       };
 
       lib = inputs.nixpkgs.lib;
@@ -34,12 +40,19 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           modules = [
+            catppuccin.nixosModules.catppuccin
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${userSettings.username} = import (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+              home-manager.users.${userSettings.username} = {
+                imports = [
+                  (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+                  catppuccin.homeManagerModules.catppuccin
+                  anyrun.homeManagerModules.default
+                ];
+              };
               home-manager.extraSpecialArgs = {
                 inherit systemSettings;
                 inherit userSettings;

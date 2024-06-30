@@ -3,7 +3,6 @@ let
   myAliases = {
     vim = "nvim";
     cl = "clear";
-    lgit = "lazygit";
     nswitch = "sudo nixos-rebuild switch --flake /etc/nixos";
     nswitchu = "sudo nixos-rebuild switch --flake /etc/nixos#nixos --update-input nixpkgs --commit-lock-file --upgrade";
     nau = "sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos";
