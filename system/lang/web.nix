@@ -8,7 +8,8 @@
     nodejs_18
     bun
     yarn  
-    pnpm
+    # pnpm
+    nodePackages.pnpm 
     corepack
   ];
 }

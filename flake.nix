@@ -2,7 +2,8 @@
   description = "NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +31,7 @@
         username = "injurka";         # username
         name = "Injurka";             # name/identifier
         email = "injurka@gmail.com";  # email (used for certain configurations)
-        wm = "hyprland";                   # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
+        wm = "kde";                   # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       };
 
       lib = inputs.nixpkgs.lib;

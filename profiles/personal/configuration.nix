@@ -44,8 +44,9 @@
     wget
     neofetch
     home-manager
-    starship
+    starship  
   ];
+
 
   system.stateVersion = "24.05";
 }
