@@ -2,10 +2,12 @@
   description = "NixOS Configuration";
 
   inputs = {
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    
     home-manager = {
-      url = "github:nix-community/home-manager";
+      # url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -16,7 +18,7 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ self, catppuccin, anyrun, ... }:
+  outputs = inputs@{ self, catppuccin, anyrun, nixpkgs-unstable, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -36,15 +38,26 @@
 
       lib = inputs.nixpkgs.lib;
       home-manager = inputs.home-manager;
-
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = systemSettings.system;
+          config.allowUnfree = true;
+        };
+      };
     in {
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           modules = [
             catppuccin.nixosModules.catppuccin
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-            home-manager.nixosModules.home-manager
-            {
+            ({ config, pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                  overlay-unstable
+                ];
+              }
+            )
+            home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${userSettings.username} = {
